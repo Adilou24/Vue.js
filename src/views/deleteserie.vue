@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: 'deleteserie',
+  name: 'deleteserie', //comment
     data() {
       return{
          series:{
