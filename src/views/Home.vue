@@ -18,7 +18,7 @@
   <td>{{serie.Note}}</td>
   <td>{{serie.Statut}}</td>
   <td><form><router-link to="/deleteserie"><input src="kisspng-button-computer-icons-.png" type="image"></router-link></form>
-  <form><router-link to="/updateserie"><input src="bouton-modifier.png" type="image"></router-link></form></td>
+  <form><router-link to="/updateserie" @event_update="updateSerie"><input src="bouton-modifier.png" type="image"></router-link></form></td>
   </tr>
   </table>
   </div>
@@ -31,18 +31,12 @@ export default {
   name: 'home',
     data() {
       return{
-          series:{
-             Title:"",
-             Note:"",
-             Description:"",
-             Statut:"",
-         },
          series:[],
          url:"http://localhost:8000/Api/mainpage"
       }
      },
-     methods: {},
-     mounted() {
+     methods: {
+     get_serieList() {
          axios
          .get(this.url)
          .then((response) => {
@@ -53,17 +47,11 @@ export default {
              console.log(error);
          });
      },
-          createserie() {
-         axios
-         .post(this.url, this.series)
-         .then((response) => {
-             this.series = response.data.series;
-             console.log(this.series);
-         })
-         .catch((error) => {
-             console.log(error);
-         })
      },
+     mounted() {
+     this.get_serieList();
+     
+     }
 };
 </script>
 <style scoped>
