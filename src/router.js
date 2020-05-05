@@ -20,9 +20,6 @@ export default new Router({
     {
       path: '/categorie',
       name: 'categorie',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: categorie,
     },
     {
@@ -31,12 +28,12 @@ export default new Router({
       component: newserie,
     },
     {
-      path: '/updateserie',
+      path: '/updateserie/:SerieID',
       name: 'updateserie',
       component: updateserie,
     },
     {
-      path: '/deleteserie',
+      path: '/deleteserie/:SerieID',
       name: 'deleteserie',
       component: deleteserie,
     },

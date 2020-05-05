@@ -1,7 +1,7 @@
 <template>
   <div v-bind:class="cssClass" id="app">
     <div id="nav">
-      <router-link to="/"><span @click="cssClass = 'green'" :style="color">Home</span></router-link>
+      <router-link to="/"><span @click="cssClass = 'green'">Home</span></router-link>
       <span>|</span>
       <router-link to="/categorie"><span @click="cssClass = 'blue'">Catégorie</span></router-link>
 

@@ -15,10 +15,10 @@
             <td>Drama</td>
         </tr>
     </table>
-<p> CatégorieID <input type="int" v-model="series.FK_CatégorieID"></p>
-<p>  Titre  <input type="text" v-model="series.Title"></p>
-<p>  Note  <input type="int" v-model="series.Note"></P>
-<p>  Description  <input type="text" v-model="series.Description"></p>
+<p> CatégorieID <input type="int" v-model="serie.FK_CatégorieID"></p>
+<p>  Titre  <input type="text" v-model="serie.Title"></p>
+<p>  Note  <input type="int" v-model="serie.Note"></P>
+<p>  Description  <input type="text" v-model="serie.Description"></p>
 <p><button v-on:click="createserie">Ajouter</button>
    </p>
 
@@ -29,7 +29,7 @@ export default {
   name: 'newserie',
     data() {
       return{
-         series:{
+         serie:{
              Title:"",
              Note:"",
              Description:"",
@@ -41,16 +41,16 @@ export default {
      methods: {
      createserie() {
          axios
-         .post(this.url, this.series)
+         .post(this.url, this.serie)
          .then((response) => {
-             this.series = response.data.series;
-             this.get_serieList();
+             this.serie = response.data.serie;
              console.log(this.series);
           
          })
          .catch((error) => {
              console.log(error);
          })
+         this.$router.push({name : "home"})
      }
      }, 
 };

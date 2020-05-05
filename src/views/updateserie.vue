@@ -1,11 +1,11 @@
 <template>
   <div class="updateserie">
     <h1>Modifier la serie</h1>
-<p> CatégorieID <input type="int" v-model="serie.FK_CatégorieID"></p>
-<p>  Titre  <input type="text" v-model="serie.Title"></p>
-<p>  Note  <input type="int" v-model="serie.Note"></P>
-<p>  Description  <input type="text" v-model="serie.Description"></p>
-<p>  Statut  <input type="text" v-model="serie.Statut"></p>
+<p> CatégorieID <input type="int" v-model="idserie.FK_CatégorieID"></p>
+<p>  Titre  <input type="text" v-model="idserie.Title"></p>
+<p>  Note  <input type="int" v-model="idserie.Note"></P>
+<p>  Description  <input type="text" v-model="idserie.Description"></p>
+<p>  Statut  <input type="text" v-model="idserie.Statut"></p>
 <p><button v-on:click="updateserie(serie)"> Modifier</button></p>
 </div>
 </template>
@@ -14,28 +14,28 @@ export default {
   name: 'updateserie',
     data() {
       return{
-         serie:{
-           SerieID:"",
-             Title:"",
-             Note:"",
-             Description:"",
-             FK_CatégorieID:"",
-             Statut:""
-         },
-         url:"http://localhost:8000/Api/updateserie/:SerieID"
+        idserie:0,
+        CatégorieID:"",
+        Titre:"",
+         url:"http://localhost:8000/Api/updateserie/"
       }
      },
      methods: {
      },
-          updateSerie(serie){
+          updateserie(idserie){
        axios
-         .put(this.url + serie.SerieID, serie)
+         .put(this.url + idserie)
          .then((response) => {
              console.log(response.data);
          })
                   .catch((error) => {
              console.log(error);
          });
+        this.$router.push({name : "home"})
+     },
+          created(){
+       this.idserie=this.$route.params.SerieID;
+
      }
 };
 </script>

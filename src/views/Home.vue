@@ -13,12 +13,14 @@
                         <th>Statut </th>
                         <th><img src="https://www.cjoint.com/doc/20_04/JDCkQDlcxGV_pngguru.com-1-.png"></th></tr>               
  <tr v-for="serie in series" :key="serie.series">
+ 
   <td>{{serie.Title}}</td>
   <td>{{serie.Description}}</td>
   <td>{{serie.Note}}</td>
   <td>{{serie.Statut}}</td>
-  <td><form><router-link to="/deleteserie"><input src="kisspng-button-computer-icons-.png" type="image"></router-link></form>
-  <form><router-link to="/updateserie" @event_update="updateSerie"><input src="bouton-modifier.png" type="image"></router-link></form></td>
+  <td ><form v-bind:serie="serie" @event_delete="deleteserie"><router-link :to="{ name: 'deleteserie', params: { SerieID: serie.SerieID }}"><input src="kisspng-button-computer-icons-.png" type="image"></router-link></form>
+  <form v-bind:serie="serie" @event_update="updateserie"><router-link :to="{ name: 'updateserie', params: {SerieID: serie.SerieID}}"><input src="bouton-modifier.png" type="image"></router-link></form>
+  </td>
   </tr>
   </table>
   </div>
@@ -30,8 +32,15 @@
 export default {
   name: 'home',
     data() {
-      return{
-         series:[],
+      return{   
+          series:{
+           SerieID:"",
+             Title:"",
+             Note:"",
+             Description:"",
+             FK_CatégorieID:"",
+         },
+
          url:"http://localhost:8000/Api/mainpage"
       }
      },
@@ -47,12 +56,32 @@ export default {
              console.log(error);
          });
      },
+     deleteserie(SerieID){
+       axios
+         .delete(this.url + SerieID)
+         .then((response) => {
+             console.log(response.data);
+         })
+         .catch((error) => {
+             console.log(error);
+         })
+     },
+     updateserie(serie){
+       axios
+         .put(this.url + SerieID, serie)
+         .then((response) => {
+             console.log(response.data);
+         })
+                  .catch((error) => {
+             console.log(error);
+         });
+     }
      },
      mounted() {
      this.get_serieList();
      
      }
-};
+}
 </script>
 <style scoped>
 .home{
