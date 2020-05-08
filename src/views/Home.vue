@@ -18,30 +18,38 @@
   <td>{{serie.Description}}</td>
   <td>{{serie.Note}}</td>
   <td>{{serie.Statut}}</td>
+  
   <td ><form v-bind:serie="serie" @event_delete="deleteserie"><router-link :to="{ name: 'deleteserie', params: { SerieID: serie.SerieID }}"><input src="kisspng-button-computer-icons-.png" type="image"></router-link></form>
-  <form v-bind:serie="serie" @event_update="updateserie"><router-link :to="{ name: 'updateserie', params: {SerieID: serie.SerieID}}"><input src="bouton-modifier.png" type="image"></router-link></form>
+  <button><Serie v-bind:serie="serie" @event_update="updateserie" ><input src="bouton-modifier.png" type="image"></Serie></button>
   </td>
   </tr>
+
   </table>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import axios from "axios";
+import Serie from "./updateserie.vue";
 export default {
   name: 'home',
+  components:{Serie},
     data() {
       return{   
-          series:{
-           SerieID:"",
-             Title:"",
-             Note:"",
-             Description:"",
-             FK_CatégorieID:"",
+          serie:{
+           SerieID:0,
+             Title:"Title",
+             Note:"Note",
+             Description:"Description",
+             Statut:"Statut",
+             FK_CatégorieID:"FK_CatégorieID",
          },
+         series:[],
 
-         url:"http://localhost:8000/Api/mainpage"
+         url:"http://localhost:8000/Api/mainpage/",
+         url2: "http://localhost:8000/Api/updateserie/",
+         showCreate: false
       }
      },
      methods: {
@@ -67,14 +75,15 @@ export default {
          })
      },
      updateserie(serie){
-       axios
-         .put(this.url + SerieID, serie)
+       console.log(serie)
+       axios.put(this.url2 + serie.SerieID, serie)
          .then((response) => {
              console.log(response.data);
          })
                   .catch((error) => {
              console.log(error);
          });
+         console.log("update item " + serie.SerieID);
      }
      },
      mounted() {

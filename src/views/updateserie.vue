@@ -1,43 +1,33 @@
 <template>
-  <div class="updateserie">
-    <h1>Modifier la serie</h1>
-<p> CatégorieID <input type="int" v-model="idserie.FK_CatégorieID"></p>
-<p>  Titre  <input type="text" v-model="idserie.Title"></p>
-<p>  Note  <input type="int" v-model="idserie.Note"></P>
-<p>  Description  <input type="text" v-model="idserie.Description"></p>
-<p>  Statut  <input type="text" v-model="idserie.Statut"></p>
-<p><button v-on:click="updateserie(serie)"> Modifier</button></p>
-</div>
+    <div id="serie">   
+        <button v-on:click="showInput = true" v-if="! showInput" >Modifier</button>
+    <div v-if="showInput"> 
+            <input type="text" v-model="serie.Title">
+            <input type="text" v-model="serie.Description">
+            <input type="number" v-model="serie.Note">
+            <input type="text" v-model="serie.Statut">
+            <input type="number" v-model="serie.FK_CatégorieID">
+   <button v-on:click="updateserieee(serie)">Sauver</button>
+        </div>
+      </div>
 </template>
-<script>
-export default {
-  name: 'updateserie',
-    data() {
-      return{
-        idserie:0,
-        CatégorieID:"",
-        Titre:"",
-         url:"http://localhost:8000/Api/updateserie/"
-      }
-     },
-     methods: {
-     },
-          updateserie(idserie){
-       axios
-         .put(this.url + idserie)
-         .then((response) => {
-             console.log(response.data);
-         })
-                  .catch((error) => {
-             console.log(error);
-         });
-        this.$router.push({name : "home"})
-     },
-          created(){
-       this.idserie=this.$route.params.SerieID;
 
+<script>
+    export default {
+        name: "Serie",
+        props:['serie'],
+        data() {
+            return {
+              showInput:false
+            }
+        },
+        methods: {
+            updateserieee(serie) {
+                this.$emit('event_update', serie);
+                  this.showInput = false;
+            }
      }
-};
+     }
 </script>
 <style scoped>
 p{
