@@ -1,6 +1,7 @@
 <template>
   <div class="deleteserie">
     <h1>Supprimer la serie?</h1>
+
     <button v-on:click="deleteserie(idserie)">Effacer</button>
   </div>
 </template>

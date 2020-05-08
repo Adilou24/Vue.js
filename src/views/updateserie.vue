@@ -1,6 +1,6 @@
 <template>
     <div id="serie">   
-        <button v-on:click="showInput = true" v-if="! showInput" >Modifier</button>
+        <button class="modif" v-on:click="showInput = true" v-if="! showInput" >Modifier</button>
     <div v-if="showInput"> 
             <input type="text" v-model="serie.Title">
             <input type="text" v-model="serie.Description">
@@ -42,4 +42,12 @@ td
 {
 text-align :center;
 }
+.modif, button{
+        border-radius: 12px;
+        background-color: black;
+        border: white;
+        color: white;
+        font-family: Georgia;
+        font-size: 13px;
+    }
 </style>

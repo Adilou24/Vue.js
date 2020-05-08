@@ -1,11 +1,7 @@
 <template>
   <div class="home">
   <h1>Liste des séries par catégorie</h1>
-      <ul>
-    <div class="btn" v-for="categorie in catégorie" :key="categorie.catégorie">
-    <li><button type="submit"><router-link to="">{{categorie.category}}</router-link></button></li>
-    </div>
-    </ul>
+
   
     <p><button type="submit"><router-link to="/newcat">nouvelle catégorie</router-link>
     </button></p>
@@ -33,7 +29,8 @@ export default {
     data() {
       return{
          catégorie:[],
-         url:"http://localhost:8000/Api/categorie1"
+         url:"http://localhost:8000/Api/categorie1",
+         url2:"http://localhost:8000/Api/categoriename"
       }
      },
      methods: {},
@@ -48,6 +45,7 @@ export default {
              console.log(error);
          });
      },
+
 };
 </script>
 <style scoped>

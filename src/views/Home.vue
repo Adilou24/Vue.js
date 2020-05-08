@@ -46,7 +46,6 @@ export default {
              FK_CatégorieID:"FK_CatégorieID",
          },
          series:[],
-
          url:"http://localhost:8000/Api/mainpage/",
          url2: "http://localhost:8000/Api/updateserie/",
          showCreate: false
