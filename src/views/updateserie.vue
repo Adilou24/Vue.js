@@ -7,7 +7,22 @@
             <input type="number" v-model="serie.Note">
             <input type="text" v-model="serie.Statut">
             <input type="number" v-model="serie.FK_CatégorieID">
+            <input type="hidden" v-model="serie.FK_iduser">
    <button v-on:click="updateserieee(serie)">Sauver</button>
+       <table>
+        <tr>
+            <th>1</th>
+            <td>Action</td>
+            <th>2</th>
+            <td>Aventure</td>
+            <th>3</th>
+            <td>Comédie</td>
+            <th>4</th>
+            <td>Horreur</td>
+            <th>5</th>
+            <td>Drama</td>
+        </tr>
+    </table>
         </div>
       </div>
 </template>

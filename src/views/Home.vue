@@ -20,7 +20,7 @@
   <td>{{serie.Statut}}</td>
   
   <td ><form v-bind:serie="serie" @event_delete="deleteserie"><router-link :to="{ name: 'deleteserie', params: { SerieID: serie.SerieID }}"><input src="kisspng-button-computer-icons-.png" type="image"></router-link></form>
-  <button><Serie v-bind:serie="serie" @event_update="updateserie" ><input src="bouton-modifier.png" type="image"></Serie></button>
+  <button><Serie v-bind:serie="serie" @event_update="updateserie" ></Serie></button>
   </td>
   </tr>
 
@@ -40,10 +40,11 @@ export default {
           serie:{
            SerieID:0,
              Title:"Title",
-             Note:"Note",
+             Note:0,
              Description:"Description",
              Statut:"Statut",
-             FK_CatégorieID:"FK_CatégorieID",
+             FK_CatégorieID:0,
+             FK_iduser:0,
          },
          series:[],
          url:"http://localhost:8000/Api/mainpage/",
@@ -62,16 +63,6 @@ export default {
          .catch((error) => {
              console.log(error);
          });
-     },
-     deleteserie(SerieID){
-       axios
-         .delete(this.url + SerieID)
-         .then((response) => {
-             console.log(response.data);
-         })
-         .catch((error) => {
-             console.log(error);
-         })
      },
      updateserie(serie){
        console.log(serie)

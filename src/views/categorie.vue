@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="catégorie">
   <h1>Liste des séries par catégorie</h1>
 
   
@@ -25,12 +25,11 @@
 // @ is an alias to /src
 
 export default {
-  name: 'home',
+  name: 'catégorie',
     data() {
       return{
          catégorie:[],
          url:"http://localhost:8000/Api/categorie1",
-         url2:"http://localhost:8000/Api/categoriename"
       }
      },
      methods: {},
